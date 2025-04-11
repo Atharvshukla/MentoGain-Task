@@ -10,4 +10,8 @@ All rhe data with {
   "projectId": "proj004"
 } gets deleted using /api/delete-project-data this endpoint 
 ![image](https://github.com/user-attachments/assets/870116c7-460e-4424-a468-5de775dfc74c)
+Going to one more edge case say we have data of different orgaizations and we want to delete all the data from all the table with org-id given this
+/api/delete-org-data endpoint does that successfully:-
+![image](https://github.com/user-attachments/assets/2d75e0fd-dffe-4983-9ad2-2baa3aff0260)
+
 
