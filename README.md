@@ -63,8 +63,6 @@ Added Dummy data using seed.js file and properly explained the whole procedure i
 |------|------------|
 | Input sent: `{ "org_id": "org789", "projectId": "proj004" }` | ![Project Delete](https://github.com/user-attachments/assets/870116c7-460e-4424-a468-5de775dfc74c) |
 | Console log confirming data deleted from all collections | ![Console Output](https://github.com/user-attachments/assets/b522b573-1693-423d-9e26-85cff7a2bcb2)
-)
-) |
 
 
 ---
