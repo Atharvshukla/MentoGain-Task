@@ -13,15 +13,7 @@ MentoGain Cleanup Script is a backend utility developed using Node.js, Express.j
 Centralized Deletion Logic – I created dedicated API routes for:
 Deleting all data for a specific project under a given organization (/api/delete-project-data)
 Deleting all data for an entire organization across all projects (/api/delete-org-data)
-
 Added Dummy data using seed.js file and properly explained the whole procedure in detail below
-
-- `Users`
-- `Projects`
-- `Tasks`
-- `Files`
-- `Notifications`
-
 ---
 <h3>📋 Table Schemas</h3>
 
@@ -62,6 +54,7 @@ Added Dummy data using seed.js file and properly explained the whole procedure i
 | `/api/delete-org-data` | DELETE | Deletes **all data for a given org_id**, across all projects. | `{ "org_id": "org123" }` | ✅ See screenshots below |
 
 ---
+## Read the NodeScriptPsuedoCode.txt For Better Understanding of api 
 
 ## 🧪 Screenshots & Outputs
 
@@ -100,4 +93,7 @@ Added Dummy data using seed.js file and properly explained the whole procedure i
 └── server.js //Run's my Server
 
 ```
+## 🐙💻 Source Control Graph 
+![image](https://github.com/user-attachments/assets/3b4ac8a0-f1b0-4549-8222-acbb62bfa220)
+
 
