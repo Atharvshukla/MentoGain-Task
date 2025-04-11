@@ -115,7 +115,7 @@ async function seed() {
   console.log('✅ Seeded 5 full project records successfully');
   mongoose.disconnect();
 }
-
+//ass
 seed().catch((err) => {
   console.error('❌ Seeding error:', err);
   mongoose.disconnect();
