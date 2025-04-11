@@ -1,0 +1,61 @@
+🔸 1. Function: Delete Data for a Specific Project
+FUNCTION deleteProjectData(request, response):
+    EXTRACT org_id and projectId from request body
+
+    IF org_id OR projectId is missing:
+        RETURN response with status 400 and message "Missing required parameters"
+
+    TRY:
+        // Delete from Users collection where org_id AND projectId match
+        DELETE all users WHERE org_id = given org_id AND projectId = given projectId
+
+        // Delete from Projects collection where _id matches projectId
+        DELETE project WHERE org_id = given org_id AND _id = given projectId
+
+        // Delete from Tasks collection where org_id AND projectId match
+        DELETE all tasks WHERE org_id = given org_id AND projectId = given projectId
+
+        // Delete from Files collection where org_id AND projectId match
+        DELETE all files WHERE org_id = given org_id AND projectId = given projectId
+
+        // Delete from Notifications collection where org_id AND projectId match
+        DELETE all notifications WHERE org_id = given org_id AND projectId = given projectId
+
+        LOG how many documents were deleted in each collection
+
+        RETURN response with status 200 and message "Project-specific data deleted successfully"
+
+    CATCH any errors:
+        LOG the error
+        RETURN response with status 500 and message "Internal Server Error"
+
+🔹 2. Function: Delete All Data for an Organization
+FUNCTION deleteOrgData(request, response):
+    EXTRACT org_id from request body
+
+    IF org_id is missing:
+        RETURN response with status 400 and message "Missing org_id parameter"
+
+    TRY:
+        // Delete from Users collection
+        DELETE all users WHERE org_id = given org_id
+
+        // Delete from Projects collection
+        DELETE all projects WHERE org_id = given org_id
+
+        // Delete from Tasks collection
+        DELETE all tasks WHERE org_id = given org_id
+
+        // Delete from Files collection
+        DELETE all files WHERE org_id = given org_id
+
+        // Delete from Notifications collection
+        DELETE all notifications WHERE org_id = given org_id
+
+        LOG number of deleted documents from each collection
+
+        RETURN response with status 200 and message "Organization-wide data deleted successfully"
+
+    CATCH any errors:
+        LOG the error
+        RETURN response with status 500 and message "Internal Server Error"
