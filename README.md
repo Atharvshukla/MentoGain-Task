@@ -1,7 +1,20 @@
 # 🚀 MentoGain Task – Cleanup Script
+Assignment :-
+I  have  to write a Node.js script that deletes data from five MongoDB collections/PostgreSQL tables — User, Projects, Task, Files, and Notification — based on a specific projectId (referred to as jid) and a corresponding org_id. This script will help clean up all related data from the system when a project is deleted.
+Multiple documents across different collections are associated with a specific project. These documents also belong to a specific organization, identified by the org_id. When a project is removed, all associated data across different collections must also be removed to ensure data consistency and prevent orphaned records.
+org_id: Identifier of the organization.
+jid: Identifier of the project (can be treated as projectId).
+Node.js script that:
+Connects to a  database.
+Accepts two inputs: org_id and projectId (jid).
+Deletes all records from the five mentioned collections where both org_id and jid match.
+## 🧠 My Approach – MentoGain Project Cleanup Script
+MentoGain Cleanup Script is a backend utility developed using Node.js, Express.js, and MongoDB to handle structured deletion of project-specific and organization-wide data. This is particularly useful for large SaaS systems or admin-level dashboards where periodic data cleanup or organization offboarding is required.
+Centralized Deletion Logic – I created dedicated API routes for:
+Deleting all data for a specific project under a given organization (/api/delete-project-data)
+Deleting all data for an entire organization across all projects (/api/delete-org-data)
 
-
-This repository provides a **Node.js-based solution** to clean up project-specific or organization-wide data from a MongoDB database across multiple collections:
+Added Dummy data using seed.js file and properly explained the whole procedure in detail below
 
 - `Users`
 - `Projects`
@@ -34,8 +47,8 @@ This repository provides a **Node.js-based solution** to clean up project-specif
     <td></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/9de2fa4e-91c6-4800-88ed-c58883da4f35
-" width="250"/></td>
+    <td><img src="https://github.com/user-attachments/assets/93f89ebd-4f69-40e6-9ea9-74f362f74577"
+ width="250"/></td>
     <td></td>
   </tr>
 </table>
