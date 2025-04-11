@@ -9,25 +9,31 @@ const Notification = require('./models/Notification');
 
 dotenv.config();
 
-const org_id = 'org789';
-
-const projectIds = ['proj001', 'proj002', 'proj003', 'proj004', 'proj005'];
+const projectList = [
+  { jid: 'proj001', org_id: 'org789' },
+  { jid: 'proj002', org_id: 'org456' },
+  { jid: 'proj003', org_id: 'org789' },
+  { jid: 'proj004', org_id: 'org123' },
+  { jid: 'proj005', org_id: 'org999' },
+];
 
 async function seed() {
-  await mongoose.connect(process.env.MONGO_URI);
+  await mongoose.connect(process.env.MONGO_URI, {
+    dbName: 'Mentorgain'  // Explicitly set database name
+});
   console.log('✅ Connected to MongoDB for Seeding');
 
-  // Clear existing data
+  // Clear old data
   await Promise.all([
-    User.deleteMany({ org_id }),
-    Project.deleteMany({ org_id }),
-    Task.deleteMany({ org_id }),
-    File.deleteMany({ org_id }),
-    Notification.deleteMany({ org_id }),
+    User.deleteMany({}),
+    Project.deleteMany({}),
+    Task.deleteMany({}),
+    File.deleteMany({}),
+    Notification.deleteMany({})
   ]);
 
-  for (let i = 0; i < projectIds.length; i++) {
-    const jid = projectIds[i];
+  for (let i = 0; i < projectList.length; i++) {
+    const { jid, org_id } = projectList[i];
 
     await Project.create({
       title: `Project ${i + 1}`,
@@ -112,10 +118,10 @@ async function seed() {
     ]);
   }
 
-  console.log('✅ Seeded 5 full project records successfully');
+  console.log('✅ Seeded 5 projects across 4 orgs successfully');
   mongoose.disconnect();
 }
-//ass
+
 seed().catch((err) => {
   console.error('❌ Seeding error:', err);
   mongoose.disconnect();
