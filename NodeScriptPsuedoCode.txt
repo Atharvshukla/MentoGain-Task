@@ -59,3 +59,47 @@ FUNCTION deleteOrgData(request, response):
     CATCH any errors:
         LOG the error
         RETURN response with status 500 and message "Internal Server Error"
+
+🔹 3. PostgreSQL Script :-
+BEGIN SCRIPT
+
+1. IMPORT required PostgreSQL client library (e.g., 'pg' in Node.js)
+
+2. INITIALIZE connection with PostgreSQL using:
+   - Host
+   - Port
+   - User
+   - Password
+   - Database name (Mentorgain)
+
+3. CONNECT to the database
+
+4. CREATE SCHEMA:
+   - Create 'Users' table with columns: id, name, org_id, project_id
+   - Create 'Projects' table with columns: id, title, org_id
+   - Create 'Tasks' table with columns: id, title, org_id, project_id
+   - Create 'Files' table with columns: id, filename, org_id, project_id
+   - Create 'Notifications' table with columns: id, message, org_id, project_id
+
+5. INSERT dummy data (at least 2–3 rows per table, with different org_id and project_id values)
+
+6. DEFINE function deleteProjectData(org_id, project_id)
+   - For each table (Users, Projects, Tasks, Files, Notifications):
+     - DELETE rows WHERE org_id = org_id AND project_id = project_id
+     - STORE and LOG the number of rows deleted
+
+7. DEFINE function deleteOrgData(org_id)
+   - For each table:
+     - DELETE rows WHERE org_id = org_id
+     - STORE and LOG the number of rows deleted
+
+8. CALL one of the two deletion functions based on user input or hardcoded value:
+   - Example:
+     - CALL deleteProjectData('org789', 'proj004')
+     - CALL deleteOrgData('org123')
+
+9. PRINT total deletions from each table
+
+10. DISCONNECT from PostgreSQL
+
+END SCRIPT
