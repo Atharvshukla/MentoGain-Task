@@ -1,4 +1,4 @@
-# 🚀 MentoGain Task – Cleanup Script
+# 🚀 MentoGain Task – Cleanup Script (  Implemented For Both MongoDB and PostgresSQL )
 Assignment :-
 I  have  to write a Node.js script that deletes data from five MongoDB collections/PostgreSQL tables — User, Projects, Task, Files, and Notification — based on a specific projectId (referred to as jid) and a corresponding org_id. This script will help clean up all related data from the system when a project is deleted.
 Multiple documents across different collections are associated with a specific project. These documents also belong to a specific organization, identified by the org_id. When a project is removed, all associated data across different collections must also be removed to ensure data consistency and prevent orphaned records.
@@ -9,11 +9,12 @@ Connects to a  database.
 Accepts two inputs: org_id and projectId (jid).
 Deletes all records from the five mentioned collections where both org_id and jid match.
 ## 🧠 My Approach – MentoGain Project Cleanup Script
-MentoGain Cleanup Script is a backend utility developed using Node.js, Express.js, and MongoDB to handle structured deletion of project-specific and organization-wide data. This is particularly useful for large SaaS systems or admin-level dashboards where periodic data cleanup or organization offboarding is required.
+MentoGain Cleanup Script is a backend utility developed using Node.js, Express.js, and MongoDB and Postgres SQL  to handle structured deletion of project-specific and organization-wide data. This is particularly useful for large SaaS systems or admin-level dashboards where periodic data cleanup or organization offboarding is required.
 Centralized Deletion Logic – I created dedicated API routes for:
 Deleting all data for a specific project under a given organization (/api/delete-project-data)
 Deleting all data for an entire organization across all projects (/api/delete-org-data)
-Added Dummy data using seed.js file and properly explained the whole procedure in detail below
+Added Dummy data using seed.js file and properly explained the whole procedure in detail below.
+Additionally Wrote a Script for Postres Sql where it connects with postgres database seed dummy data in according to our schema and do the deletion all this with one script. 
 ---
 <h3>📋 Table Schemas</h3>
 
@@ -36,13 +37,17 @@ Added Dummy data using seed.js file and properly explained the whole procedure i
   </tr>
   <tr>
     <td><strong>Notification</strong></td>
+     <td><strong>Tables in Postgres PgAdmin</strong></td>
     <td></td>
   </tr>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/93f89ebd-4f69-40e6-9ea9-74f362f74577"
  width="250"/></td>
-    <td></td>
+ <td><img src="https://github.com/user-attachments/assets/af2b06b3-aa4a-4637-9e52-fafacdaab670"
+ width="250"/></td>
   </tr>
+
+
 </table>
 
 
@@ -73,10 +78,21 @@ Added Dummy data using seed.js file and properly explained the whole procedure i
 | Endpoint triggered with input: `{ "org_id": "org123" }` | ![Org Delete](https://github.com/user-attachments/assets/2d75e0fd-dffe-4983-9ad2-2baa3aff0260) |
 | Console log confirming data deleted from all collections | ![Console Output](https://github.com/user-attachments/assets/612242ae-c8f4-4b32-95b2-a4dd1383ce44)
 ---
+---
+
+### 📌 Postgres SQL Script (Does Connection with PG databse Seed Dummy data and then delete according to the input given in the script)
+| Step | Screenshot |
+|------|------------|
+| Script triggered with input:`{ "org_id": "org789", "projectId": "proj004" }`  | ![image](https://github.com/user-attachments/assets/407c74ac-259d-49cf-9796-0adb688f9c61)|
+| Console log confirming data deleted from all collections | ![Console Log ](https://github.com/user-attachments/assets/9b45192c-12b7-490f-9ab8-9d351ec371fe)
+
+---
 
 ## 📂 **Project Structure**
 ```
+├── NodeScriptPsuedoCode.txt // PsuedoCode to understand the Script both mongoDb and Postgres 
 ├── README.md
+├── deletionScriptPostgres.js // Single Script which connects to postgres database and seeds data and does deletion
 ├── models // schema for all 5 Table
 │   ├── File.js
 │   ├── Notification.js
@@ -86,12 +102,13 @@ Added Dummy data using seed.js file and properly explained the whole procedure i
 ├── package-lock.json
 ├── package.json
 ├── routes
-│   └── delete.js // made 2 api endpoints
-├── seed.js //Adding Dummy data to test api and Script which i have writen
-└── server.js //Run's my Server
+│   └── delete.js  // made 2 api endpoints
+├── seed.js  //Adding Dummy data to test api and Script which i have writen
+└── server.js   //Run's my Server
 
 ```
 ## 🐙💻 Source Control Graph 
-![image](https://github.com/user-attachments/assets/3b4ac8a0-f1b0-4549-8222-acbb62bfa220)
+![image](https://github.com/user-attachments/assets/66899b14-a7d3-4696-b428-8876d855e85c)
+
 
 
